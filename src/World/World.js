@@ -1,13 +1,17 @@
-import { loadHorse } from './components/gltf/horse.js';
-
 import { createCamera } from './components/camera.js';
 import { createLights } from './components/lights.js';
 import { createScene } from './components/scene.js';
+import { createRoom } from './components/room.js';
+import { createFloor } from './components/vr/floor.js';
 
 import { createControls } from './systems/controls.js';
 import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/Resizer.js';
 import { Loop } from './systems/Loop.js';
+
+import { loadHorse } from './components/gltf/horse.js';
+
+import { VRButton } from 'three/addons/webxr/VRButton.js';
 
 let camera;
 let controls;
@@ -21,23 +25,31 @@ class World {
     renderer = createRenderer();
     scene = createScene();
     loop = new Loop(camera, scene, renderer);
-    container.append(renderer.domElement);
     controls = createControls(camera, renderer.domElement);
+
+    // Append renderer to the html page inside specified container.
+    container.append(renderer.domElement);
+
+    // Append VR button to the html page
+    container.appendChild(VRButton.createButton(renderer));
+    renderer.xr.enabled = true;
 
     const { ambientLight, mainLight } = createLights();
 
+    const room = createRoom();
+    // const floor = createFloor();
+    // Add to the loop
     loop.updatables.push(controls);
-    scene.add(ambientLight, mainLight);
+
+    // Add to the scene
+    scene.add(ambientLight, mainLight, room);
 
     const resizer = new Resizer(container, camera, renderer);
   }
 
   async init() {
     const horse = await loadHorse();
-
-    // move the target to the center of the front bird
-    // controls.target.copy(horse.position);
-
+    controls.target.copy(horse.position);
     scene.add(horse);
   }
 

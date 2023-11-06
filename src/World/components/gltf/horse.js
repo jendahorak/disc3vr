@@ -11,11 +11,8 @@ async function loadHorse() {
 
   const horse = setupModel(horseData);
 
-  // TODO - why is it scaling so wierd, models are too big.
-  // horse.scale.set(0.01, 0.01, 0.01);
-
   console.log(horse);
-  horse.position.set(0, 0, 0);
+  horse.position.set(0, 0, -2);
 
   return horse;
 }

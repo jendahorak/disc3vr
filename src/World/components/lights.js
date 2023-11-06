@@ -6,6 +6,10 @@ function createLights() {
   const mainLight = new DirectionalLight('white', 4);
   mainLight.position.set(10, 10, 10);
 
+  const hemiLight = new HemisphereLight(0xa5a5a5, 0x898989, 3);
+  const dirLightNormalized = new DirectionalLight(0xffffff, 3);
+  dirLightNormalized.position.set(1, 1, 1).normalize();
+
   return { ambientLight, mainLight };
 }
 
