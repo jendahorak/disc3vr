@@ -5,16 +5,14 @@ import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 
-import { LoadingManager, REVISION } from 'three';
-
 import { setupLoadingManager } from './loading_manager';
 
 async function loadCompressed(renderer) {
   const manager = setupLoadingManager();
 
-  const dracoLoader = new DRACOLoader(manager).setDecoderPath(`node_modules/three/examples/jsm/libs/draco/`);
+  const dracoLoader = new DRACOLoader(manager).setDecoderPath(`loader_libs/`);
 
-  const ktx2Loader = new KTX2Loader(manager).setTranscoderPath(`node_modules/three/examples/jsm/libs/basis/`).detectSupport(renderer);
+  const ktx2Loader = new KTX2Loader(manager).setTranscoderPath(`loader_libs/`).detectSupport(renderer);
 
   const loader = new GLTFLoader(manager).setCrossOrigin('anonymous').setDRACOLoader(dracoLoader).setKTX2Loader(ktx2Loader).setMeshoptDecoder(MeshoptDecoder);
 

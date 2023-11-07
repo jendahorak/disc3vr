@@ -2,8 +2,21 @@
 
 - add VR support
 
-  - can be viewed in vr
-  - add controlers
-  - try out gltf room
+  - [x] can be viewed in vr - done
+  - [x] added room
+  - [] add controlers
+  - [] try out gltf room
 
-- try to deploy the VR app
+- deployment
+
+  - [x] try to deploy the VR app
+
+- interaction
+
+  - [] VR movement
+  -
+
+- data
+  - [] add geo data
+  - [] try to experiment with size of data
+  - [] try to port qgis2threejs export to VR

@@ -1,6 +1,10 @@
 {
+  "name": "disc3vr",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
   "scripts": {
-    "predeploy": "npm run build && node /utils/update-homepage.js && node /utils/check-repo-name.js",
+    "predeploy": "npm run build && node utils/updateHomepage.js && node utils/checkRepositoryName.js",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
@@ -12,5 +16,6 @@
   },
   "dependencies": {
     "three": "^0.158.0"
-  }
+  },
+  "homepage": "https://github.com/jendahorak/disc3vr/"
 }

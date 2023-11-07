@@ -4,7 +4,11 @@ function setupLoadingManager() {
   const manager = new LoadingManager();
 
   manager.onStart = function (url, itemsLoaded, itemsTotal) {
-    console.log('Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+    if (url.endsWith('.glb')) {
+      console.log('Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+    }
+
+    // console.log('Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
   };
 
   manager.onLoad = function () {
@@ -17,11 +21,14 @@ function setupLoadingManager() {
   };
 
   manager.onProgress = function (url, itemsLoaded, itemsTotal) {
-    console.log('Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+    if (url.endsWith('.glb')) {
+      console.log('Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+    }
+    // console.log('Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
   };
 
   manager.onError = function (url) {
-    console.log('There was an error loading ' + url);
+    console.error('There was an error loading ' + url);
   };
 
   return manager;

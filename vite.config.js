@@ -7,8 +7,6 @@ const currentDirectory = process.cwd();
 // Extract the project name from the folder name
 const projectName = path.basename(currentDirectory);
 
-import { defineConfig } from 'vite';
-
 export default defineConfig({
   base: `/${projectName}/`,
 });
