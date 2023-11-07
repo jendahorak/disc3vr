@@ -19,6 +19,7 @@ let controls;
 let renderer;
 let scene;
 let loop;
+let containerRef;
 
 class World {
   constructor(container) {
@@ -28,12 +29,9 @@ class World {
     loop = new Loop(camera, scene, renderer);
     controls = createControls(camera, renderer.domElement);
 
+    containerRef = container;
     // Append renderer to the html page inside specified container.
     container.append(renderer.domElement);
-
-    // Append VR button to the html page
-    container.appendChild(VRButton.createButton(renderer));
-    renderer.xr.enabled = true;
 
     const { ambientLight, mainLight } = createLights();
 
@@ -57,6 +55,10 @@ class World {
     const horse = await loadHorse();
     controls.target.copy(horse.position);
     scene.add(horse);
+
+    // Append VR button to the html page
+    containerRef.appendChild(VRButton.createButton(renderer));
+    renderer.xr.enabled = true;
   }
 
   render() {

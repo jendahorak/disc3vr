@@ -19,6 +19,7 @@ h1 {
 
   /* make sure that the heading is drawn on top */
   z-index: 1;
+  top: 59%;
 }
 
 #scene-container {
