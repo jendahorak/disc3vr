@@ -11,7 +11,7 @@ async function loadHorse() {
 
   const horse = setupModel(horseData);
 
-  console.log(horse);
+  // console.log(horse);
   horse.position.set(0, 0, -2);
 
   return horse;

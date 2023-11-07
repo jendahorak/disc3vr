@@ -10,6 +10,7 @@ import { Resizer } from './systems/Resizer.js';
 import { Loop } from './systems/Loop.js';
 
 import { loadHorse } from './components/gltf/horse.js';
+import { loadCompressed } from './components/gltf/compressed_asset_loader.js';
 
 import { VRButton } from 'three/addons/webxr/VRButton.js';
 
@@ -36,18 +37,23 @@ class World {
 
     const { ambientLight, mainLight } = createLights();
 
-    const room = createRoom();
+    // const room = createRoom();
     // const floor = createFloor();
     // Add to the loop
     loop.updatables.push(controls);
 
     // Add to the scene
-    scene.add(ambientLight, mainLight, room);
+    scene.add(ambientLight, mainLight);
 
     const resizer = new Resizer(container, camera, renderer);
   }
 
   async init() {
+    const compressed_model = await loadCompressed(renderer);
+    compressed_model.position.set(0, 1.7, 0);
+
+    scene.add(compressed_model);
+
     const horse = await loadHorse();
     controls.target.copy(horse.position);
     scene.add(horse);
