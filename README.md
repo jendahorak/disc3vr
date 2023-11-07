@@ -18,7 +18,7 @@ Repo for project with structure learned from book https://discoverthreejs.com.
 - interaction
 
   - [ ] VR movement
-  -
+  - [ ] Model interaction
 
 - data
   - [ ] add geo data
