@@ -8,8 +8,8 @@ Repo for project with structure learned from book https://discoverthreejs.com.
 
   - [x] can be viewed in vr - done
   - [x] added room
-  - [] add controlers
-  - [] try out gltf room
+  - [ ] add controlers
+  - [ ] try out gltf room
 
 - deployment
 
@@ -17,10 +17,10 @@ Repo for project with structure learned from book https://discoverthreejs.com.
 
 - interaction
 
-  - [] VR movement
+  - [ ] VR movement
   -
 
 - data
-  - [] add geo data
-  - [] try to experiment with size of data
-  - [] try to port qgis2threejs export to VR
+  - [ ] add geo data
+  - [ ] try to experiment with size of data
+  - [ ] try to port qgis2threejs export to VR
