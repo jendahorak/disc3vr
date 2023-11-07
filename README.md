@@ -1,6 +1,6 @@
 # disc3vr
 
-Repo for project with structure learned from book https://discoverthreejs.com.
+Repo for project with structure learned from book <https://discoverthreejs.com>.
 
 ## TODOs
 
