@@ -8,6 +8,7 @@ import { createControls } from './systems/controls.js';
 import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/Resizer.js';
 import { Loop } from './systems/Loop.js';
+import { createStatistics } from './systems/statistics.js';
 
 import { loadHorse } from './components/gltf/horse.js';
 import { loadCompressed } from './components/gltf/compressed_asset_loader.js';
@@ -20,13 +21,17 @@ let renderer;
 let scene;
 let loop;
 let containerRef;
+let stats;
 
 class World {
   constructor(container) {
+    stats = createStatistics();
+    console.log(stats);
+
     camera = createCamera();
     renderer = createRenderer();
     scene = createScene();
-    loop = new Loop(camera, scene, renderer);
+    loop = new Loop(camera, scene, renderer, stats);
     controls = createControls(camera, renderer.domElement);
 
     containerRef = container;
@@ -38,7 +43,7 @@ class World {
     // const room = createRoom();
     // const floor = createFloor();
     // Add to the loop
-    loop.updatables.push(controls);
+    loop.updatables.push(controls, stats);
 
     // Add to the scene
     scene.add(ambientLight, mainLight);
