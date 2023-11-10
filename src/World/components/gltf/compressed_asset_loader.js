@@ -16,7 +16,8 @@ async function loadCompressed(renderer) {
 
   const loader = new GLTFLoader(manager).setCrossOrigin('anonymous').setDRACOLoader(dracoLoader).setKTX2Loader(ktx2Loader).setMeshoptDecoder(MeshoptDecoder);
 
-  const gltf_data = await loader.loadAsync('models/geography_room_optimized.glb');
+  // const gltf_data = await loader.loadAsync('models/geography_room_optimized.glb');
+  const gltf_data = await loader.loadAsync('models/cloud_compare_contours_terrain_gltf_report_v1.glb');
 
   const gltf_model = setupModel(gltf_data);
 
