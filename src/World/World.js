@@ -9,6 +9,7 @@ import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/Resizer.js';
 import { Loop } from './systems/Loop.js';
 import { createStatistics } from './systems/statistics.js';
+import { createImControls } from './systems/imcontrols.js';
 
 import { loadHorse } from './components/gltf/horse.js';
 import { loadCompressed } from './components/gltf/compressed_asset_loader.js';
@@ -24,6 +25,7 @@ let scene;
 let loop;
 let containerRef;
 let stats;
+let imcontrols;
 
 class World {
   constructor(container) {
@@ -43,9 +45,10 @@ class World {
 
     const { ambientLight, mainLight } = createLights();
 
+    // imcontrols = createImControls(camera, renderer, scene);
     // const room = createRoom();
     // Add to the loop
-    loop.updatables.push(controls, stats);
+    loop.updatables.push(stats, controls);
 
     // Add to the scene
     scene.add(ambientLight, mainLight);
