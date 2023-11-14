@@ -15,6 +15,8 @@ import { loadCompressed } from './components/gltf/compressed_asset_loader.js';
 
 import { VRButton } from 'three/addons/webxr/VRButton.js';
 
+import { MathUtils, Group } from 'three';
+
 let camera;
 let controls;
 let renderer;
@@ -29,6 +31,7 @@ class World {
     console.log(stats);
 
     camera = createCamera();
+
     renderer = createRenderer();
     scene = createScene();
     loop = new Loop(camera, scene, renderer, stats);
@@ -41,7 +44,6 @@ class World {
     const { ambientLight, mainLight } = createLights();
 
     // const room = createRoom();
-    // const floor = createFloor();
     // Add to the loop
     loop.updatables.push(controls, stats);
 
@@ -53,13 +55,15 @@ class World {
 
   async init() {
     const compressed_model = await loadCompressed(renderer);
-    compressed_model.position.set(0, 1.7, 0);
+    compressed_model.scale.set(0.001, 0.001, 0.001);
+
+    // compressed_model.position.set(0, 1.7, 0);
 
     scene.add(compressed_model);
 
-    const horse = await loadHorse();
-    controls.target.copy(horse.position);
-    scene.add(horse);
+    // const horse = await loadHorse();
+    // controls.target.copy(horse.position);
+    // scene.add(horse);
 
     // Append VR button to the html page
     containerRef.appendChild(VRButton.createButton(renderer));
