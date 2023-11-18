@@ -1,7 +1,9 @@
 function setupModel(data) {
-  const model = data.scene.children[0];
+  console.log('Loading data', data);
 
-  return model;
+  const root = data.scene;
+
+  return root;
 }
 
 export { setupModel };
