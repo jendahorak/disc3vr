@@ -57,12 +57,14 @@ class World {
   }
 
   async init() {
-    const compressed_model = await loadCompressed(renderer);
-    compressed_model.scale.set(0.001, 0.001, 0.001);
+    let { buildings, legenda } = await loadCompressed(renderer);
+    buildings.scale.set(0.002, 0.002, 0.002);
+    legenda.scale.set(0.01, 0.01, 0.01);
 
     // compressed_model.position.set(0, 1.7, 0);
+    legenda.position.set(0, 0.2, 1.2);
 
-    scene.add(compressed_model);
+    scene.add(buildings, legenda);
 
     // const horse = await loadHorse();
     // controls.target.copy(horse.position);

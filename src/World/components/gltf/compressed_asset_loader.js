@@ -20,14 +20,16 @@ async function loadCompressed(renderer) {
   // const gltf_data = await loader.loadAsync('models/cloud_compare_contours_terrain_gltf_report_v1.glb');
   // const gltf_data1 = await loader.loadAsync('models/ce_export_terrain_buildings_opritmised_v2_deleted_bases_origio_pbr_good_origin.glb');
   const gltf_data2 = await loader.loadAsync('models/temathic_model.glb');
+  const gltf_legenda_data = await loader.loadAsync('models/blender_legenda_baracky.glb');
   // const gltf_data = await loader.loadAsync('models/budovy_terrain_simplified_unjoined.glb');
   // const gltf_data = await loader.loadAsync('models/budovy_terrain_simplified_unjoined_default.glb');
   // const gltf_data2 = await loader.loadAsync('models/budovy_terrain_without_uvs_normals.glb');
 
   // const gltf_model = setupModel(gltf_data1);
-  const gltf_model2 = setupModel(gltf_data2);
+  const buildings = setupModel(gltf_data2);
+  const legenda = setupModel(gltf_legenda_data);
 
-  return gltf_model2;
+  return { buildings, legenda };
 }
 
 export { loadCompressed };
