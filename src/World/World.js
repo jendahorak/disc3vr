@@ -9,10 +9,13 @@ import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/Resizer.js';
 import { Loop } from './systems/Loop.js';
 import { createStatistics } from './systems/statistics.js';
+// todo - needs to be unisntalled
 import { createImControls } from './systems/imcontrols.js';
 
 import { loadHorse } from './components/gltf/horse.js';
-import { loadCompressed } from './components/gltf/compressed_asset_loader.js';
+import { loadBuildings } from './components/gltf/buildingsTerrain.js';
+import { loadLegend } from './components/gltf/legendRoofs.js';
+import { loadMapScene } from './components/gltf/gltfSceneAreaLight.js';
 
 import { VRButton } from 'three/addons/webxr/VRButton.js';
 
@@ -25,7 +28,6 @@ let scene;
 let loop;
 let containerRef;
 let stats;
-let imcontrols;
 
 class World {
   constructor(container) {
@@ -45,8 +47,6 @@ class World {
 
     const { ambientLight, mainLight } = createLights();
 
-    // imcontrols = createImControls(camera, renderer, scene);
-    // const room = createRoom();
     // Add to the loop
     loop.updatables.push(stats, controls);
 
@@ -57,19 +57,19 @@ class World {
   }
 
   async init() {
-    let { buildings, legenda } = await loadCompressed(renderer);
-    buildings.scale.set(0.002, 0.002, 0.002);
-    legenda.scale.set(0.01, 0.01, 0.01);
-
-    // compressed_model.position.set(0, 1.7, 0);
-    legenda.position.set(0, 0.2, 1.2);
-
-    scene.add(buildings, legenda);
+    let buildings = await loadBuildings();
+    controls.target.copy(buildings.position);
+    scene.add(buildings);
 
     // const horse = await loadHorse();
-    // controls.target.copy(horse.position);
     // scene.add(horse);
 
+    const legend = await loadLegend();
+    scene.add(legend);
+
+    // const mapScene = await loadMapScene();
+    // // controls.target.copy(mapScene);
+    // scene.add(mapScene);
     // Append VR button to the html page
     containerRef.appendChild(VRButton.createButton(renderer));
     renderer.xr.enabled = true;
