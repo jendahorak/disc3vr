@@ -1,9 +1,9 @@
 import { DirectionalLight, HemisphereLight } from 'three';
 
 function createLights() {
-  const ambientLight = new HemisphereLight('white', 'darkslategrey', 1);
+  const ambientLight = new HemisphereLight('white', 'darkslategrey', 0);
 
-  const mainLight = new DirectionalLight('white', 2);
+  const mainLight = new DirectionalLight('white', 0);
   mainLight.position.set(2, 3, -1);
   mainLight.castShadow = true;
 

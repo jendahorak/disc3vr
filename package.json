@@ -6,7 +6,7 @@
   "scripts": {
     "predeploy": "npm run build && node utils/updateHomepage.js && node utils/checkRepositoryName.js",
     "deploy": "gh-pages -d dist",
-    "dev": "vite",
+    "dev": "vite --port 6969",
     "build": "vite build",
     "preview": "vite preview"
   },

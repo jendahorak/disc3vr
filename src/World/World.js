@@ -16,10 +16,11 @@ import { loadHorse } from './components/gltf/horse.js';
 import { loadBuildings } from './components/gltf/buildingsTerrain.js';
 import { loadLegend } from './components/gltf/legendRoofs.js';
 import { loadMapScene } from './components/gltf/gltfSceneAreaLight.js';
+import { loadCompressedMapScene } from './components/gltf/mapSceneMap.js';
 
 import { VRButton } from 'three/addons/webxr/VRButton.js';
 
-import { MathUtils, Group } from 'three';
+import { MathUtils, Group, Color } from 'three';
 
 let camera;
 let controls;
@@ -38,6 +39,9 @@ class World {
 
     renderer = createRenderer();
     scene = createScene();
+
+    scene.background.set(new Color('black'));
+
     loop = new Loop(camera, scene, renderer, stats);
     controls = createControls(camera, renderer.domElement);
 
@@ -57,18 +61,21 @@ class World {
   }
 
   async init() {
-    let buildings = await loadBuildings();
-    controls.target.copy(buildings.position);
-    scene.add(buildings);
+    // let buildings = await loadBuildings();
+    // controls.target.copy(buildings.position);
+    // scene.add(buildings);
 
     // const horse = await loadHorse();
     // scene.add(horse);
 
-    const legend = await loadLegend();
-    scene.add(legend);
+    // const legend = await loadLegend();
+    // scene.add(legend);
 
+    // const compressedMapScene = await loadCompressedMapScene(renderer);
+
+    const dracoMapScene = await loadCompressedMapScene();
+    scene.add(dracoMapScene);
     // const mapScene = await loadMapScene();
-    // // controls.target.copy(mapScene);
     // scene.add(mapScene);
     // Append VR button to the html page
     containerRef.appendChild(VRButton.createButton(renderer));
