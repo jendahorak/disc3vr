@@ -73,7 +73,7 @@ class World {
 
     // const compressedMapScene = await loadCompressedMapScene(renderer);
 
-    const dracoMapScene = await loadCompressedMapScene();
+    const dracoMapScene = await loadCompressedMapScene(renderer);
     scene.add(dracoMapScene);
     // const mapScene = await loadMapScene();
     // scene.add(mapScene);

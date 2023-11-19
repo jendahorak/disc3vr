@@ -1,7 +1,8 @@
 import { loadCompressed } from './systems/compressedAssetLoader.js';
 
 async function loadBuildings(renderer = null) {
-  const buildingsData = await loadCompressed('models/compressed/temathic_model_draco.glb');
+  const buildingsData = await loadCompressed('models/compressed/temathic_model_draco.glb', renderer);
+  // const buildingsData = await loadCompressed('models/compressed/simple_map_scene_spot_light_5w_map_v1_ktx1.glb', renderer);
   const buildingsScene = buildingsData.scene;
 
   // here we can traverse the gltf node graph

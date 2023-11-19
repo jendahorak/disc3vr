@@ -9,16 +9,22 @@ async function loadCompressed(gltfPath, renderer = null) {
   // Setup loader and Draco, KTX, and meshopt decoder.
   const manager = setupLoadingManager();
 
-  const dracoLoader = new DRACOLoader(manager).setDecoderPath(`loader_libs/draco/`);
-  const loader = new GLTFLoader(manager).setCrossOrigin('anonymous').setDRACOLoader(dracoLoader);
-  // .setMeshoptDecoder(MeshoptDecoder);
+  console.log(renderer);
 
-  let ktx2Loader = null;
+  const dracoLoader = new DRACOLoader(manager).setDecoderPath(`loader_libs/draco/`);
+
+  const ktx2Loader = null;
 
   if (renderer) {
-    ktx2Loader = new KTX2Loader(manager).setTranscoderPath(`loader_libs/`).detectSupport(renderer);
-    loader.setKTX2Loader(ktx2Loader);
+    const ktx2Loader = new KTX2Loader(manager).setTranscoderPath(`loader_libs/`).detectSupport(renderer);
+    const loader = new GLTFLoader(manager).setCrossOrigin('anonymous').setDRACOLoader(dracoLoader).setKTX2Loader(ktx2Loader);
+    const gltfData = await loader.loadAsync(gltfPath);
+    return gltfData;
   }
+
+  const loader = new GLTFLoader(manager).setCrossOrigin('anonymous').setDRACOLoader(dracoLoader);
+
+  // .setMeshoptDecoder(MeshoptDecoder);
 
   // Load the data
   const gltfData = await loader.loadAsync(gltfPath);
