@@ -1,7 +1,7 @@
 import { loadAsset } from './systems/assetLoader.js';
 
 async function loadMapScene() {
-  const sceneData = await loadAsset('models/scenes/simple_map_scene_spot_light_v5_5w.glb');
+  const sceneData = await loadAsset('models/scenes/vr_scene_thematic_topo1_v1.glb');
   const sceneScene = sceneData.scene;
 
   // here we can traverse the gltf node graph
